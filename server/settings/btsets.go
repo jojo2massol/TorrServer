@@ -46,6 +46,11 @@ type BTSets struct {
 
 	// Torrent
 	ForceEncrypt             bool
+	// CamouflageClient presents this client as the latest qBittorrent release
+	// and makes its tracker announces and peer facing behaviour match it.
+	// Default on. WARNING: on a ratio enforcing private tracker this is ratio
+	// circumvention and will end the account.
+	CamouflageClient         bool
 	RetrackersMode           int    // 0 - don`t add, 1 - add retrackers (def), 2 - remove retrackers 3 - replace retrackers
 	TrackersListURL          string // optional custom remote trackers list URL; empty = use built-in mirrors; tried first, then mirrors
 	DefaultTrackers          string // newline-separated announce URLs used as local/fallback list
@@ -213,6 +218,7 @@ func SetDefaultConfig() {
 	sets.EnableLPD = true
 	sets.LPDIPv6 = false
 	sets.EnableBonjour = true
+	sets.CamouflageClient = true
 	sets.MergeAllM3U = false
 	// Set default TMDB settings
 	sets.TMDBSettings = TMDBConfig{
@@ -254,6 +260,10 @@ func loadBTSets() {
 			if json.Unmarshal(buf, &raw) == nil {
 				if _, ok := raw["EnableBonjour"]; !ok {
 					BTsets.EnableBonjour = true
+				}
+				// Default camouflage on for configs that predate the setting.
+				if _, ok := raw["CamouflageClient"]; !ok {
+					BTsets.CamouflageClient = true
 				}
 			}
 			// Upgrade older configs that never had tracker list fields.
