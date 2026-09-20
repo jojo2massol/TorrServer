@@ -460,6 +460,8 @@ github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20200824232613-28f6c0f3b639/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/ianlancetaylor/demangle v0.0.0-20230524184225-eabc099b10ab/go.mod h1:gx7rwoVhcfuVKG5uya9Hs3Sxj7EIvldVofAWIUtGouw=
+github.com/jojo2massol/torrent v1.2.32-0.20260920173715-8965d15b98c9 h1:a+7R9HGj4ecK1TCFVtasjKIvWuRYEYlh3YzszMfylV0=
+github.com/jojo2massol/torrent v1.2.32-0.20260920173715-8965d15b98c9/go.mod h1:yz3J10YJmUfiFfylHgIzr9cuhmXHHmf5xsHDgsqEnFg=
 github.com/josharian/intern v1.0.0/go.mod h1:5DoeVV0s6jJacbCEi61lwdGj/aVlrQvzHFFd8Hwg//Y=
 github.com/jpillora/backoff v1.0.0/go.mod h1:J/6gKK9jxlEcS3zixgDgUAsiuZ7yrSoa/FX5e0EB2j4=
 github.com/json-iterator/go v1.1.6/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
@@ -657,8 +659,6 @@ github.com/swaggo/swag v1.16.6/go.mod h1:ngP2etMK5a0P3QBizic5MEwpRmluJZPHjXcMoj4
 github.com/tinylib/msgp v1.0.2/go.mod h1:+d+yLhGm8mzTaHzB+wgMYrodPfmZrzkirds8fDWklFE=
 github.com/tinylib/msgp v1.1.0/go.mod h1:+d+yLhGm8mzTaHzB+wgMYrodPfmZrzkirds8fDWklFE=
 github.com/tinylib/msgp v1.1.2/go.mod h1:+d+yLhGm8mzTaHzB+wgMYrodPfmZrzkirds8fDWklFE=
-github.com/tsynik/torrent v1.2.31 h1:3MV8hzdi4xOD6nn8nExwYWHtxfEd9JES2HlSqx2JKdo=
-github.com/tsynik/torrent v1.2.31/go.mod h1:yz3J10YJmUfiFfylHgIzr9cuhmXHHmf5xsHDgsqEnFg=
 github.com/tsynik/upnp v0.1.5 h1:2KXGBtY6MZHxq17p/N372Kr/0MJX3ADAimfvPcTpap8=
 github.com/tsynik/upnp v0.1.5/go.mod h1:NiwP/o2sXNehx/4DbRT78Itii9F13d7NUrdHcVlpPPs=
 github.com/tv42/httpunix v0.0.0-20150427012821-b75d8614f926/go.mod h1:9ESjWnEqriFuLhtthL60Sar/7RFoluCcXsuvEwTV5KM=
