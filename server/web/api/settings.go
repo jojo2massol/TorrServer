@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"server/bonjour"
@@ -17,7 +18,29 @@ import (
 // Action: get, set, def
 type setsReqJS struct {
 	requestI
-	Sets *sets.BTSets `json:"sets,omitempty"`
+	// Kept raw so that a key the client left out can be told apart from one it
+	// deliberately sent as false. See mergeBTSets.
+	Sets json.RawMessage `json:"sets,omitempty"`
+}
+
+// mergeBTSets applies the fields present in raw on top of cur and returns the
+// result, leaving anything the client did not send untouched.
+//
+// Decoding into a zero value instead would mean any client that does not know
+// a field resets it on every save: an older app, or one built before the field
+// existed, silently turns off everything it has never heard of.
+func mergeBTSets(cur *sets.BTSets, raw json.RawMessage) (*sets.BTSets, error) {
+	merged := sets.BTSets{}
+	if cur != nil {
+		merged = *cur
+	}
+	if len(raw) == 0 {
+		return nil, errors.New("sets is empty")
+	}
+	if err := json.Unmarshal(raw, &merged); err != nil {
+		return nil, err
+	}
+	return &merged, nil
 }
 
 // settings godoc
@@ -46,13 +69,18 @@ func settings(c *gin.Context) {
 		c.JSON(200, sets.BTsets)
 		return
 	} else if req.Action == "set" {
-		torr.SetSettings(req.Sets)
+		newSets, err := mergeBTSets(sets.BTsets, req.Sets)
+		if err != nil {
+			c.AbortWithError(http.StatusBadRequest, err)
+			return
+		}
+		torr.SetSettings(newSets)
 		dlna.Stop()
-		if req.Sets.EnableDLNA {
+		if newSets.EnableDLNA {
 			dlna.Start()
 		}
 		bonjour.Stop()
-		if req.Sets.EnableBonjour {
+		if newSets.EnableBonjour {
 			bonjour.Start()
 		}
 		rutor.Stop()
