@@ -99,10 +99,10 @@ func (bt *BTServer) configure() {
 	bt.storage = torrstor.NewStorage(settings.BTsets.CacheSize)
 	bt.config.DefaultStorage = bt.storage
 
-	userAgent := "qBittorrent/4.3.9"
-	peerID := "-qB4390-"
+	qbt := utils.QBittorrentIdent(settings.BTsets.CamouflageClient)
+	// Only ever seen by the LAN router's port mapping table, never by the swarm,
+	// so it stays honest and keeps the router readable.
 	upnpID := "TorrServer/" + version.Version
-	cliVers := userAgent
 
 	bt.config.Debug = settings.BTsets.EnableDebug
 	bt.config.DisableIPv6 = !settings.BTsets.EnableIPv6
@@ -116,11 +116,12 @@ func (bt *BTServer) configure() {
 	bt.config.DisablePEX = settings.BTsets.DisablePEX
 	bt.config.NoUpload = settings.BTsets.DisableUpload
 	bt.config.IPBlocklist = blocklist
-	bt.config.Bep20 = peerID
-	bt.config.PeerID = utils.PeerIDRandom(peerID)
+	bt.config.Bep20 = qbt.PeerID
+	bt.config.PeerID = utils.PeerIDRandom(qbt.PeerID)
 	bt.config.UpnpID = upnpID
-	bt.config.HTTPUserAgent = userAgent
-	bt.config.ExtendedHandshakeClientVersion = cliVers
+	bt.config.HTTPUserAgent = qbt.UserAgent
+	bt.config.ExtendedHandshakeClientVersion = qbt.UserAgent
+	bt.config.CamouflageClient = settings.BTsets.CamouflageClient
 	bt.config.EstablishedConnsPerTorrent = settings.BTsets.ConnectionsLimit
 	bt.config.TotalHalfOpenConns = 500
 	// Encryption/Obfuscation
