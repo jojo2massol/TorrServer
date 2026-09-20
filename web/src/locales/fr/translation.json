@@ -154,6 +154,8 @@
     "EnableRutorSearchHint": "Vous pouvez rechercher des torrents par RuTor, même si RuTor n'est pas disponible. NOTE : La base de données prend environ 500 Mo de RAM.",
     "ForceEncrypt": "Forcer le chiffrement des en-têtes",
     "ForceEncryptHint": "Peut aider avec les fournisseurs qui bloquent les torrents",
+    "Camouflage": "Camouflage en qBittorrent",
+    "CamouflageHint": "Les annonces ressemblent au dernier qBittorrent. A eviter sur un tracker prive a ratio",
     "FriendlyName": "Nom du serveur (DLNA/Bonjour)",
     "FriendlyNameHint": "Laisser vide pour utiliser la valeur par défaut",
     "JsonFile": "Fichier JSON",

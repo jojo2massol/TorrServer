@@ -6,6 +6,7 @@ export default {
   TorrentsSavePath: '',
   RemoveCacheOnDrop: false,
   ForceEncrypt: false,
+  CamouflageClient: true,
   RetrackersMode: 1,
   TrackersListURL: '',
   DefaultTrackers: `http://retracker.local/announce

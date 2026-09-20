@@ -56,6 +56,7 @@ export default function SecondarySettingsComponent({ settings, inputForm }) {
     EnableIPv6,
     FriendlyName,
     ForceEncrypt,
+    CamouflageClient,
     DisableTCP,
     DisableUTP,
     DisableUPNP,
@@ -198,6 +199,14 @@ export default function SecondarySettingsComponent({ settings, inputForm }) {
           labelPlacement='start'
         />
         <FormHelperText margin='none'>{t('SettingsDialog.ForceEncryptHint')}</FormHelperText>
+      </FormGroup>
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch checked={CamouflageClient} onChange={inputForm} id='CamouflageClient' color='secondary' />}
+          label={t('SettingsDialog.Camouflage')}
+          labelPlacement='start'
+        />
+        <FormHelperText margin='none'>{t('SettingsDialog.CamouflageHint')}</FormHelperText>
       </FormGroup>
       <FormGroup>
         <FormControlLabel
