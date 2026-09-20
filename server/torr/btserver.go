@@ -139,6 +139,13 @@ func (bt *BTServer) configure() {
 		bt.config.Seed = true
 		bt.config.UploadRateLimiter = utils.Limit(settings.BTsets.UploadRateLimit * 1024)
 	}
+	if settings.BTsets.CamouflageClient && !settings.BTsets.DisableUpload {
+		// The simulated curve reaches 100 percent and keeps seeding, so the
+		// client must behave like it. Without this, Seed is only ever set when
+		// an upload rate limit happens to be configured, and we would stop
+		// uploading at exactly the point we announce completion.
+		bt.config.Seed = true
+	}
 	if settings.TorAddr != "" {
 		log.Println("Set listen addr", settings.TorAddr)
 		bt.config.SetListenAddr(settings.TorAddr)
